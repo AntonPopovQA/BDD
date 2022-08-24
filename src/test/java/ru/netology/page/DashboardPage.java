@@ -10,7 +10,6 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class DashboardPage {
     private SelenideElement heading = $("[data-test-id=dashboard]");
-    private ElementsCollection cardsButton = $$("[data-test-id='action-deposit']");
     private final String balanceStart = "баланс: ";
     private final String balanceFinish = " р.";
 
@@ -18,13 +17,8 @@ public class DashboardPage {
         heading.shouldBe(visible);
     }
 
-    public TransferPage firstCard() {
-        cardsButton.first().click();
-        return new TransferPage();
-    }
-
-    public TransferPage secondCard() {
-        cardsButton.last().click();
+    public TransferPage cards(String id) {
+        $("[data-test-id='" + id + "'] [data-test-id='action-deposit']").click();
         return new TransferPage();
     }
 
